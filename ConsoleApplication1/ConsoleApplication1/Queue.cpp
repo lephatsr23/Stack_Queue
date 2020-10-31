@@ -3,15 +3,14 @@ Queue::Queue() {
 	//this->size = size;
 }
 Queue::~Queue() {
-	Node* temp1;
-	temp1 = this->head;
-	while (temp1) {
-		Node* temp2;
-		temp2 = temp1;
-		temp1 = temp1->next;
-		delete temp2;
+	
+	while (this->head) {
+		Node* temp1;
+		temp1 = this->head;
+		this->head = this->head->next;
+		delete temp1;
 	}
-	delete temp1;
+	this->tail = NULL;
 }
 int Queue::getsize() {
 	return this->size;
@@ -42,7 +41,6 @@ void Queue::enQueue(Node *node) {
 			this->size++;
 			return;
 		}
-
 	}
 	else {
 		cout << " full Queue, don't equeue" << endl;
@@ -52,13 +50,15 @@ void Queue::enQueue(Node *node) {
 }
 
 Node * Queue::deQueue() {
+	if (isEmpty() == 0 || this->size == 0) {
+		return NULL;
+	}
 	Node* temp;
 	temp = this->head;
 	if (temp) {
 		this->head = this->head->next;
 		this->size--;
 	}
-	temp->next = NULL;
 	return temp;
 }
 

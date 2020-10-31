@@ -3,15 +3,13 @@ Stack::Stack() {
 	//this->size = size;
 }
 Stack::~Stack() {
-	Node* temp1;
-	temp1 = this->head;
-	while (temp1) {
-		Node* temp2;
-		temp2 = temp1;
-		temp1 = temp1->next;
-		delete temp2;
+
+	while (this->head) {
+		Node* temp1;
+		temp1 = this->head;
+		this->head = this->head->next;
+		delete temp1;
 	}
-	delete temp1;
 }
 int Stack::getsize() {
 	return this->size;
